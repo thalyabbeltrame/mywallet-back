@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { config as dotenvConfig } from 'dotenv';
+import chalk from 'chalk';
 
 dotenvConfig();
 
@@ -16,4 +17,4 @@ try {
   console.log(err);
 }
 
-export default database;
+export { database };

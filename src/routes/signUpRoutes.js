@@ -3,8 +3,8 @@ import { Router } from 'express';
 import { validateSignUpInfos } from '../middlewares/validateSignUp.js';
 import { insertSignUpInfos } from '../controllers/signUpController.js';
 
-const signUpRoute = Router();
+const router = Router();
 
-signUpRoute.post('/', validateSignUpInfos, insertSignUpInfos);
+router.post('/', validateSignUpInfos, insertSignUpInfos);
 
-export default signUpRoute;
+export default router;
