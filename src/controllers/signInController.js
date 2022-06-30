@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 import { database as db } from '../databases/mongo.js';
-import { httpStatus } from '../utils/httpStatus.js';
+import httpStatus from '../utils/httpStatus.js';
 
 const insertSignInInfos = async (_, res) => {
   const { _id, name } = res.locals.account;
@@ -18,4 +18,4 @@ const insertSignInInfos = async (_, res) => {
   }
 };
 
-export { insertSignInInfos };
+export default insertSignInInfos;

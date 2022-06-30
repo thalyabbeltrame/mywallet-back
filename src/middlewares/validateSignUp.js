@@ -1,6 +1,6 @@
 import { database as db } from '../databases/mongo.js';
-import { httpStatus } from '../utils/httpStatus.js';
-import { signUpSchema } from '../models/signUpSchema.js';
+import httpStatus from '../utils/httpStatus.js';
+import signUpSchema from '../models/signUpSchema.js';
 
 const validateSignUpInfos = async (req, res, next) => {
   const { name, email, password, passwordConfirmation } = req.body;
@@ -15,4 +15,4 @@ const validateSignUpInfos = async (req, res, next) => {
   }
 };
 
-export { validateSignUpInfos };
+export default validateSignUpInfos;

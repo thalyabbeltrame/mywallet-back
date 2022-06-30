@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongodb';
 
-import { httpStatus } from '../utils/httpStatus.js';
-import { transactionSchema } from '../models/transactionSchema.js';
-import { getBalance } from '../utils/balance.js';
+import httpStatus from '../utils/httpStatus.js';
+import transactionSchema from '../models/transactionSchema.js';
+import getBalance from '../utils/balance.js';
 import { database as db } from '../databases/mongo.js';
 
 const validateTransaction = async (req, res, next) => {
@@ -28,4 +28,4 @@ const validateTransaction = async (req, res, next) => {
   }
 };
 
-export { validateTransaction };
+export default validateTransaction;

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { validateSignInInfos } from '../middlewares/validateSignIn.js';
-import { insertSignInInfos } from '../controllers/signInController.js';
+import validateSignInInfos from '../middlewares/validateSignIn.js';
+import insertSignInInfos from '../controllers/signInController.js';
 
 const router = Router();
 

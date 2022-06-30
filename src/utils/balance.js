@@ -12,4 +12,4 @@ const getBalance = async (userId) => {
   return balance;
 };
 
-export { getBalance };
+export default getBalance;

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { validateToken } from '../middlewares/validateToken.js';
-import { validateTransaction } from '../middlewares/validateTransaction.js';
+import validateToken from '../middlewares/validateToken.js';
+import validateTransaction from '../middlewares/validateTransaction.js';
 import {
   insertTransaction,
   getTransaction,

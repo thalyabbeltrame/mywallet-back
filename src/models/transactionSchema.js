@@ -6,4 +6,4 @@ const transactionSchema = Joi.object({
   type: Joi.valid('deposit', 'withdrawal').required(),
 });
 
-export { transactionSchema };
+export default transactionSchema;

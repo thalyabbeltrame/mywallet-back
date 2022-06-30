@@ -2,8 +2,8 @@ import dayjs from 'dayjs';
 import { ObjectId } from 'mongodb';
 
 import { database as db } from '../databases/mongo.js';
-import { getBalance } from '../utils/balance.js';
-import { httpStatus } from '../utils/httpStatus.js';
+import getBalance from '../utils/balance.js';
+import httpStatus from '../utils/httpStatus.js';
 
 const insertTransaction = async (req, res) => {
   const { amount, description, type } = req.body;

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 import { database as db } from '../databases/mongo.js';
-import { httpStatus } from '../utils/httpStatus.js';
+import httpStatus from '../utils/httpStatus.js';
 
 const SALT_OR_ROUNDS = 10;
 
@@ -23,4 +23,4 @@ const insertSignUpInfos = async (req, res) => {
   }
 };
 
-export { insertSignUpInfos };
+export default insertSignUpInfos;

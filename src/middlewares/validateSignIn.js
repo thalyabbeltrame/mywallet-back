@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 
 import { database as db } from '../databases/mongo.js';
-import { httpStatus } from '../utils/httpStatus.js';
-import { signInSchema } from '../models/signInSchema.js';
+import httpStatus from '../utils/httpStatus.js';
+import signInSchema from '../models/signInSchema.js';
 
 const validateSignInInfos = async (req, res, next) => {
   const { email, password } = req.body;
@@ -18,7 +18,7 @@ const validateSignInInfos = async (req, res, next) => {
 
     delete account.email;
     delete account.password;
-    
+
     res.locals.account = account;
     next();
   } catch (err) {
@@ -26,4 +26,4 @@ const validateSignInInfos = async (req, res, next) => {
   }
 };
 
-export { validateSignInInfos };
+export default validateSignInInfos;

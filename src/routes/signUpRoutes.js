@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { validateSignUpInfos } from '../middlewares/validateSignUp.js';
-import { insertSignUpInfos } from '../controllers/signUpController.js';
+import validateSignUpInfos from '../middlewares/validateSignUp.js';
+import insertSignUpInfos from '../controllers/signUpController.js';
 
 const router = Router();
 

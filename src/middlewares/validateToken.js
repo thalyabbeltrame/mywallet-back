@@ -1,5 +1,5 @@
 import { database as db } from '../databases/mongo.js';
-import { httpStatus } from '../utils/httpStatus.js';
+import httpStatus from '../utils/httpStatus.js';
 
 const validateToken = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -19,4 +19,4 @@ const validateToken = async (req, res, next) => {
   }
 };
 
-export { validateToken };
+export default validateToken;
