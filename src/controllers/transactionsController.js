@@ -35,3 +35,19 @@ const getTransaction = async (_, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao obter as transações!');
   }
 };
+
+const deleteTransaction = async (req, res) => {
+  const { userId } = res.locals.session;
+  const transactionId = new ObjectId(req.params.transactionId);
+  try {
+    const transaction = await db.collection('transactions').findOne({ _id: transactionId });
+    if (!transaction) return res.status(httpStatus.NOT_FOUND).send('Id da transação não encontrado!');
+    if (transaction.userId !== userId)
+      return res.status(httpStatus.UNAUTHORIZED).send('Você não tem permissão para deletar essa transação!');
+
+    await db.collection('transactions').deleteOne({ _id: transactionId });
+    res.status(httpStatus.OK).send('Transação deletada com sucesso!');
+  } catch (err) {
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao deletar a transação!');
+  }
+};
