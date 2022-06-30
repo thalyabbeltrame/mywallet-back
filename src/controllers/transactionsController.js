@@ -51,3 +51,24 @@ const deleteTransaction = async (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao deletar a transação!');
   }
 };
+
+const updateTransaction = async (req, res) => {
+  const { userId } = res.locals.session;
+  const { amount, description } = req.body;
+  const transactionId = new ObjectId(req.params.transactionId);
+  try {
+    const transaction = await db.collection('transactions').findOne({ _id: transactionId });
+    if (!transaction) return res.status(httpStatus.NOT_FOUND).send('Id da transação não encontrado!');
+    if (transaction.userId !== userId)
+      return res.status(httpStatus.UNAUTHORIZED).send('Você não tem permissão para deletar essa transação!');
+
+    await db
+      .collection('transactions')
+      .updateOne({ _id: transactionId }, { $set: { amount, description, date: dayjs().format('DD/MM') } });
+    res.status(httpStatus.CREATED).send('Transação atualizada com sucesso!');
+  } catch (err) {
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao deletar a transação!');
+  }
+};
+
+export { insertTransaction, getTransaction, deleteTransaction, updateTransaction };
