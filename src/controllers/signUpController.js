@@ -9,7 +9,7 @@ const insertSignUpInfos = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    const encryptedPassword = await bcrypt.hash(password, SALT_OR_ROUNDS);
+    const encryptedPassword = bcrypt.hashSync(password, SALT_OR_ROUNDS);
     const newAccount = {
       name,
       email,
@@ -17,9 +17,9 @@ const insertSignUpInfos = async (req, res) => {
     };
 
     await db.collection('accounts').insertOne(newAccount);
-    return res.status(httpStatus.CREATED).send('Nova conta criada com sucesso!');
+    return res.status(httpStatus.CREATED).send('Conta criada com sucesso!');
   } catch (err) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao criar nova conta!');
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao criar conta!');
   }
 };
 

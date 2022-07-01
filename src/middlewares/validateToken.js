@@ -4,7 +4,7 @@ import httpStatus from '../utils/httpStatus.js';
 const validateToken = async (req, res, next) => {
   const { authorization } = req.headers;
   const token = authorization?.replace('Bearer ', '');
-  if (!token) return res.sendStatus(httpStatus.UNAUTHORIZED);
+  if (!token) return res.sendStatus(httpStatus.UNPROCESSABLE_ENTITY);
 
   try {
     const session = await db.collection('sessions').findOne({ token });

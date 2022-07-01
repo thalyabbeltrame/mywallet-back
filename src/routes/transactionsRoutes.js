@@ -2,9 +2,10 @@ import { Router } from 'express';
 
 import validateToken from '../middlewares/validateToken.js';
 import validateTransaction from '../middlewares/validateTransaction.js';
+import validateTransactionId from '../middlewares/validateTransactionId.js';
 import {
   insertTransaction,
-  getTransaction,
+  getTransactions,
   deleteTransaction,
   updateTransaction,
 } from '../controllers/transactionsController.js';
@@ -12,8 +13,8 @@ import {
 const router = Router();
 
 router.post('/', validateToken, validateTransaction, insertTransaction);
-router.get('/', validateToken, getTransaction);
-router.delete('/:transactionId', validateToken, deleteTransaction);
-router.put('/:transactionId', validateToken, validateTransaction, updateTransaction);
+router.get('/', validateToken, getTransactions);
+router.delete('/:transactionId', validateToken, validateTransactionId, deleteTransaction);
+router.put('/:transactionId', validateToken, validateTransactionId, validateTransaction, updateTransaction);
 
 export default router;
