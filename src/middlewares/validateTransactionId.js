@@ -14,7 +14,7 @@ const validateTransactionId = async (req, res, next) => {
       return res.status(httpStatus.UNAUTHORIZED).send('Você não tem permissão para executar essa ação!');
     next();
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao validar Id da transação!');
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao validar id da transação!');
   }
 };
 

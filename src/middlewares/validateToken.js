@@ -15,7 +15,7 @@ const validateToken = async (req, res, next) => {
     res.locals.session = session;
     next();
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao realizar transação!');
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro inesperado!');
   }
 };
 

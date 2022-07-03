@@ -8,7 +8,7 @@ const validateSignUpInfos = async (req, res, next) => {
   if (error) return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.details.map(({ message }) => message));
   try {
     const account = await db.collection('accounts').findOne({ email });
-    if (account) return res.status(httpStatus.NOT_FOUND).send('E-mail já está em uso!');
+    if (account) return res.status(httpStatus.CONFLICT).send('E-mail já está em uso!');
     next();
   } catch (err) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao criar conta!');

@@ -1,5 +1,3 @@
-import { ObjectId } from 'mongodb';
-
 import httpStatus from '../utils/httpStatus.js';
 import transactionSchema from '../models/transactionSchema.js';
 

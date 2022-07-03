@@ -10,7 +10,7 @@ const insertTransaction = async (req, res) => {
   const { userId } = res.locals.session;
 
   const newTransaction = {
-    amount,
+    amount: amount.toString(),
     description,
     type,
     date: dayjs().format('DD/MM'),
@@ -19,9 +19,9 @@ const insertTransaction = async (req, res) => {
 
   try {
     await db.collection('transactions').insertOne(newTransaction);
-    res.status(httpStatus.CREATED).send('Transação realizada com sucesso!');
+    res.status(httpStatus.CREATED).send('Transação criada com sucesso!');
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao salvar a transação!');
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao criar transação!');
   }
 };
 
@@ -31,7 +31,7 @@ const getTransactions = async (_, res) => {
   try {
     const transactions = await db.collection('transactions').find({ userId }).toArray();
     const balance = await getBalance(userId);
-    res.status(httpStatus.OK).send({ transactions, balance });
+    res.status(httpStatus.OK).send({ transactions: transactions.reverse(), balance });
   } catch (err) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao obter as transações!');
   }
@@ -44,7 +44,7 @@ const deleteTransaction = async (req, res) => {
     await db.collection('transactions').deleteOne({ _id: transactionId });
     res.status(httpStatus.OK).send('Transação deletada com sucesso!');
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao deletar a transação!');
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao deletar transação!');
   }
 };
 
@@ -55,10 +55,13 @@ const updateTransaction = async (req, res) => {
   try {
     await db
       .collection('transactions')
-      .updateOne({ _id: transactionId }, { $set: { amount, description, type, date: dayjs().format('DD/MM') } });
+      .updateOne(
+        { _id: transactionId },
+        { $set: { amount: amount.toString(), description, type, date: dayjs().format('DD/MM') } }
+      );
     res.status(httpStatus.CREATED).send('Transação atualizada com sucesso!');
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao deletar a transação!');
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Erro ao atualizar transação!');
   }
 };
 
